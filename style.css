@@ -1,0 +1,142 @@
+/* Phối màu chuẩn từ bảng màu của Stellan Skyeto */
+:root {
+    --bg-dark: #142026;       /* Màu đen nền tối đặc trưng góc phải bảng màu */
+    --body-shadow: #283941;   /* Màu xám đen đậm bên trái bảng màu */
+    --accent-red: #D35252;    /* Màu đỏ sừng và kính của Skyeto */
+    --scarf-gray: #8E9AA6;    /* Màu xám khăn quàng */
+    --star-yellow: #F4DD6B;   /* Màu vàng kẹp tóc ngôi sao */
+    --text-white: #ffffff;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.profile-container {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+}
+
+/* Khung Avatar */
+.avatar-container {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 20px auto;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    background-color: var(--body-shadow);
+    border-radius: 50%;
+    border: 3px solid var(--accent-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: var(--star-yellow);
+    box-shadow: 0 0 20px rgba(211, 82, 82, 0.2);
+}
+
+/* Kẹp tóc ngôi sao hoạt họa */
+.star-clip {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    color: var(--star-yellow);
+    font-size: 24px;
+    animation: pulse Star 2s infinite ease-in-out;
+    text-shadow: 0 0 8px var(--star-yellow);
+}
+
+h1 {
+    font-size: 26px;
+    margin: 10px 0 5px 0;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.bio {
+    color: var(--scarf-gray);
+    font-size: 14px;
+    margin-bottom: 35px;
+    font-weight: 500;
+}
+
+/* Danh sách nút Link */
+.links-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.link-item {
+    background-color: var(--body-shadow);
+    border: 1px solid rgba(142, 154, 166, 0.2);
+    color: var(--text-white);
+    text-decoration: none;
+    padding: 16px 20px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hiệu ứng di chuột chuẩn phối màu Skyeto */
+.link-item:hover {
+    border-color: var(--accent-red);
+    background-color: var(--accent-red);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(211, 82, 82, 0.3);
+}
+
+.link-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.link-icon {
+    font-size: 18px;
+}
+
+.arrow {
+    color: var(--scarf-gray);
+    font-size: 14px;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.link-item:hover .arrow {
+    color: var(--text-white);
+    transform: translateX(3px);
+}
+
+footer {
+    margin-top: 50px;
+    font-size: 11px;
+    color: var(--scarf-gray);
+    letter-spacing: 2px;
+    opacity: 0.7;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
