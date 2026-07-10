@@ -52,13 +52,14 @@ body {
     justify-content: space-between;
     -webkit-font-smoothing: antialiased;
     user-select: none; /* Chống bôi đen chọn chữ lung tung trên web */
+    box-sizing: border-box;
 }
 
 /* Khung chứa trung tâm giới hạn chiều rộng để layout không bị vỡ */
 .main-container {
-    max-width: 600px;
+    max-width: 650px;
     width: 100%;
-    padding: 60px 20px;
+    padding: 40px 24px;
     margin: auto;
     box-sizing: border-box;
 }
@@ -78,25 +79,25 @@ body {
 /* Chữ nền to in hoa sát nhau */
 .title-bg {
     font-family: 'Coolvetica-Hv', sans-serif; 
-    font-size: 3.2rem;
+    font-size: clamp(2.5rem, 8vw, 3.5rem); /* Tự động co giãn cỡ chữ theo màn hình không lo vỡ hàng */
     color: var(--text-dark);
     text-transform: uppercase;
     letter-spacing: -1px;
     line-height: 1;
+    text-align: center;
 }
 
 /* Khối chữ nhật trắng đè lên trên và cố tình làm lệch khối */
 .title-fg {
     position: absolute;
-    top: 30px;
-    left: 50%;
-    /* Dịch sang trái 42% (thay vì 50%) và chúi xuống 5px để tạo độ lệch phá cách */
-    transform: translate(-42%, 5px); 
+    top: 50%;
+    left: 55%; /* Tăng nhẹ sang phải để lệch một cách cố ý */
+    transform: translate(-50%, -20%); 
     background-color: #FFFFFF;
     color: #FFFFFF; /* Để màu chữ trắng kết hợp blend-mode đảo màu */
     font-family: 'Coolvetica-Cram', sans-serif; 
-    font-size: 1.6rem;
-    padding: 6px 20px;
+    font-size: clamp(1.2rem, 4vw, 1.8rem); /* Co giãn linh hoạt */
+    padding: 4px 16px;
     text-transform: lowercase;
     white-space: nowrap;
     
@@ -117,10 +118,11 @@ body {
 }
 
 /* ==========================================================================
-   5. BỐ CỤC NỘI DUNG CHÍNH (CHIA HAI BÊN BẰNG FLEXBOX)
+   5. BỐ CỤC NỘI DUNG CHÍNH (XỬ LÝ ĐA GIAO DIỆN PC & MOBILE)
    ========================================================================== */
 .content-layout {
     display: flex;
+    flex-direction: row; /* Mặc định xếp hàng ngang trên PC */
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -143,19 +145,19 @@ body {
     text-decoration: none;
     color: var(--text-dark);
     font-family: 'Coolvetica-Rg', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: all 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out, padding 0.2s ease-in-out;
     display: block;
     width: fit-content;
 }
 
-/* HIỆU ỨNG HOVER CHUYỂN FONT NGHIÊNG VÀ ĐỔI MÀU ĐỎ SỪNG */
+/* HIỆU ỨNG HOVER: LÀM NGHIÊNG CHỮ BẰNG TOÁN HỌC CSS ĐỂ TRÁNH GIẬT KHUNG */
 .nav-button:hover {
     color: var(--accent-red);
-    font-family: 'Coolvetica-It', sans-serif; /* Tự động đổi sang file font nghiêng khi di chuột */
-    padding-left: 6px; /* Chữ dịch chuyển nhẹ tạo cảm giác mượt mà */
+    padding-left: 8px; /* Chữ dịch nhẹ sang phải mượt mà */
+    transform: skewX(-12deg); /* Làm nghiêng chữ giả lập bản Italic cực kỳ an toàn */
 }
 
 /* KHỐI VUÔNG CHỨA ẢNH NGỌN LỬA 0001.PNG BÊN PHẢI */
@@ -168,6 +170,11 @@ body {
     transform: rotate(6deg); /* Xoay nghiêng góc nghệ thuật đúng điệu */
     box-shadow: 4px 4px 0px rgba(0,0,0,0.03);
     border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.fire-wrapper:hover {
+    transform: rotate(0deg) scale(1.05); /* Hiệu ứng xoay thẳng lại nhẹ khi hover vào ngọn lửa */
 }
 
 /* Ảnh ngọn lửa nhỏ gọn không chiếm diện tích */
@@ -178,7 +185,26 @@ body {
 }
 
 /* ==========================================================================
-   6. FOOTER SẠCH SẼ TỐI GIẢN
+   6. RESPONSIVE MEDIA QUERIES (VÁ LỖI CHO ĐIỆN THOẠI)
+   ========================================================================== */
+@media (max-width: 580px) {
+    .content-layout {
+        flex-direction: column-reverse; /* Đảo ngược: Đẩy ngọn lửa lên trên, danh sách link xuống dưới */
+        gap: 50px;
+    }
+    
+    .links-section {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .fire-wrapper {
+        transform: rotate(-4deg); /* Đổi góc xoay nhẹ trên điện thoại cho cân bằng thị giác */
+    }
+}
+
+/* ==========================================================================
+   7. FOOTER SẠCH SẼ TỐI GIẢN
    ========================================================================== */
 footer {
     font-family: 'Coolvetica-Cond', sans-serif;
