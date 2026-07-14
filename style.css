@@ -57,11 +57,12 @@ body {
 
 /* Khung chứa trung tâm giới hạn chiều rộng để layout không bị vỡ */
 .main-container {
-    max-width: 650px;
+    max-width: 1050px; /* Đã nới rộng để hiển thị đẹp hơn trên PC */
     width: 100%;
     padding: 40px 24px;
     margin: auto;
     box-sizing: border-box;
+    transition: max-width 0.3s ease;
 }
 
 /* ==========================================================================
@@ -160,6 +161,16 @@ body {
     transform: skewX(-12deg); /* Làm nghiêng chữ giả lập bản Italic cực kỳ an toàn */
 }
 
+/* Trạng thái BÌNH THƯỜNG của Mascot trên PC (luôn to 190px để cân đối giao diện mới) */
+#skyeto-mascot {
+    width: 190px; 
+    height: auto;
+    cursor: pointer;
+    display: block;
+    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.15));
+    transition: transform 0.2s ease, width 0.3s ease; /* Hiệu ứng co giãn mượt mà cả khi rê vào lẫn bỏ ra */
+}
+
 /* Hiệu ứng nẩy nhẹ của Skyeto Mascot khi Hover */
 #skyeto-mascot:hover {
     transform: scale(1.08) rotate(-3deg); /* Nghiêng nhẹ tinh nghịch khi chỉ chuột vào */
@@ -177,6 +188,11 @@ body {
     .links-section {
         width: 100%;
         box-sizing: border-box;
+    }
+
+    /* Thêm dòng này để fix size nhỏ lại trên điện thoại */
+    #skyeto-mascot {
+        width: 145px; 
     }
 }
 
