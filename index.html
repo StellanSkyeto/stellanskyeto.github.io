@@ -6,9 +6,12 @@
     <title>Stellan Skyeto - Official Website</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="favicon.png">
-
 </head>
 <body>
+
+    <div class="useless-favicon" style="position: absolute; top: 15px; left: 15px; z-index: 20;">
+        <img src="favicon.png" alt="Favicon" style="width: 32px; height: 32px; display: block; opacity: 0.8;">
+    </div>
 
     <div class="main-container">
         
@@ -24,20 +27,38 @@
         <div class="content-layout">
             
             <main class="links-section">
-                <a href="https://www.tiktok.com/@stellanskyeto?_t=ZS-8zla3kZh7TO..." target="_blank" class="nav-button">TIKTOK </a>
-                <a href="https://x.com/StellanSkyeto" target="_blank" class="nav-button">X ( TWITTER ) </a>
-                <a href="https://www.instagram.com/stellanskyeto" target="_blank" class="nav-button">INSTAGRAM </a>
-                <a href="https://www.facebook.com/StellanSkyeto/" target="_blank" class="nav-button">FACEBOOK </a>
-                <a href="https://www.reddit.com/u/Informal-Body-4980/s/GZS14zcwlX" target="_blank" class="nav-button">REDDIT </a>
-                <a href="https://www.roblox.com/users/4669452742/profile" target="_blank" class="nav-button">ROBLOX </a>
-                <a href="https://discord.com/users/1306851876737908756" target="_blank" class="nav-button">DISCORD </a>
-                <a href="https://discord.gg/e8FkssEwzV" target="_blank" class="nav-button">STELLANSKYETO'S SERVER ( DC )</a>
-                <a href="https://skyeto.fandom.com" target="_blank" class="nav-button">WIKI</a>
-                <a href="https://guns.lol/stellanskyeto" target="_blank" class="nav-button">All Skyeto's Link Here</a>
+                <div class="guns-lol-wrapper" style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                    <a href="https://guns.lol/stellanskyeto" target="_blank" class="nav-button" style="font-family: 'Coolvetica-Hv', sans-serif; font-size: 1.2rem; margin: 0;">Guns.lol</a>
+                    <button onclick="toggleMenu()" id="arrow-btn" style="background: var(--text-dark); color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-size: 14px; cursor: pointer; font-family: monospace;">▼</button>
+                </div>
+
+                <div id="hidden-links" style="display: none; flex-direction: column; gap: 12px; width: 100%; margin-top: 10px;">
+                    <a href="https://www.tiktok.com/@stellanskyeto" target="_blank" class="nav-button">TIKTOK</a>
+                    <a href="https://x.com/StellanSkyeto" target="_blank" class="nav-button">X ( TWITTER )</a>
+                    <a href="https://www.instagram.com/stellanskyeto" target="_blank" class="nav-button">INSTAGRAM</a>
+                    <a href="https://www.facebook.com/StellanSkyeto/" target="_blank" class="nav-button">FACEBOOK</a>
+                    <a href="https://www.reddit.com/u/Informal-Body-4980" target="_blank" class="nav-button">REDDIT</a>
+                    <a href="https://www.roblox.com/users/4669452742/profile" target="_blank" class="nav-button">ROBLOX</a>
+                    <a href="https://discord.com/users/1306851876737908756" target="_blank" class="nav-button">DISCORD</a>
+                    <a href="https://discord.gg/e8FkssEwzV" target="_blank" class="nav-button">STELLANSKYETO'S SERVER ( DC )</a>
+                    <a href="https://skyeto.fandom.com" target="_blank" class="nav-button">WIKI</a>
+                </div>
+
+                <div class="welcome-box" style="background-color: var(--text-dark); color: #ffffff; padding: 20px; border-radius: 8px; text-align: left; margin-top: 25px; font-size: 0.9rem; line-height: 1.5; width: 100%; box-sizing: border-box; box-shadow: 4px 4px 0px rgba(0,0,0,0.15);">
+                    <h3 style="margin-top: 0; font-family: 'Coolvetica-Hv', sans-serif; text-transform: uppercase; border-bottom: 2px solid #333; padding-bottom: 5px; color: var(--star-gold);">Welcome :3</h3>
+                    <p style="margin: 8px 0;">Hello! I am Quan (Stellan Skyeto). This is my official website built to archive my creative journey.</p>
+                    <p style="margin: 12px 0 0 0; font-size: 0.8rem; color: #a4b0be; font-family: 'Coolvetica-It', sans-serif;">
+                        About this site: This website started as a small programming experiment when I was learning to code, but now it's my own personal creative space!
+                    </p>
+                </div>
             </main>
 
-            <div class="fire-wrapper">
-                <img src="0001.png" alt="Skyeto Fire" class="fire-img">
+            <div class="skyeto-mascot-wrapper" style="position: relative; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                <div id="speech-bubble" style="visibility: hidden; background: #ffffff; color: var(--text-dark); border: 3px solid var(--text-dark); border-radius: 8px; padding: 5px 12px; position: absolute; top: -45px; left: 50%; transform: translateX(-50%); font-family: 'Coolvetica-Hv', sans-serif; font-size: 14px; z-index: 10; white-space: nowrap; box-shadow: 3px 3px 0px rgba(0,0,0,0.2);">
+                    Meow! 🐱
+                </div>
+                <img src="skyeto-closedmouth.png" alt="Skyeto" id="skyeto-mascot" onclick="makeMeow()" style="width: 140px; height: auto; cursor: pointer; display: block; filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.15)); transition: transform 0.2s ease;">
+                <div style="font-size: 11px; margin-top: 8px; font-family: 'Coolvetica-Cond', sans-serif; font-weight: bold; letter-spacing: 1px; color: var(--text-dark);">touch me!!</div>
             </div>
 
         </div>
@@ -47,6 +68,7 @@
     <footer>
         © 2026 STELLAN SKYETO. ALL RIGHTS RESERVED :3
     </footer>
-<script src="script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>

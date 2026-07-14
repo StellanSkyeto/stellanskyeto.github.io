@@ -126,7 +126,7 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    gap: 40px; /* Khoảng cách giữa cụm links và khối ảnh ngọn lửa */
+    gap: 40px; 
 }
 
 /* THANH SỌC DỌC MÀU ĐEN ÔM LẤY DANH SÁCH LINKS BÊN TRÁI */
@@ -160,28 +160,9 @@ body {
     transform: skewX(-12deg); /* Làm nghiêng chữ giả lập bản Italic cực kỳ an toàn */
 }
 
-/* KHỐI VUÔNG CHỨA ẢNH NGỌN LỬA 0001.PNG BÊN PHẢI */
-.fire-wrapper {
-    background-color: rgba(26, 32, 38, 0.12); /* Nền xám mờ nhẹ tạo khối */
-    padding: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotate(6deg); /* Xoay nghiêng góc nghệ thuật đúng điệu */
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.03);
-    border-radius: 4px;
-    transition: transform 0.3s ease;
-}
-
-.fire-wrapper:hover {
-    transform: rotate(0deg) scale(1.05); /* Hiệu ứng xoay thẳng lại nhẹ khi hover vào ngọn lửa */
-}
-
-/* Ảnh ngọn lửa nhỏ gọn không chiếm diện tích */
-.fire-img {
-    width: 90px; 
-    height: auto;
-    display: block;
+/* Hiệu ứng nẩy nhẹ của Skyeto Mascot khi Hover */
+#skyeto-mascot:hover {
+    transform: scale(1.08) rotate(-3deg); /* Nghiêng nhẹ tinh nghịch khi chỉ chuột vào */
 }
 
 /* ==========================================================================
@@ -189,17 +170,13 @@ body {
    ========================================================================== */
 @media (max-width: 580px) {
     .content-layout {
-        flex-direction: column-reverse; /* Đảo ngược: Đẩy ngọn lửa lên trên, danh sách link xuống dưới */
-        gap: 50px;
+        flex-direction: column-reverse; /* Đẩy Skyeto lên trên, cụm thông tin xuống dưới trên Mobile */
+        gap: 40px;
     }
     
     .links-section {
         width: 100%;
         box-sizing: border-box;
-    }
-    
-    .fire-wrapper {
-        transform: rotate(-4deg); /* Đổi góc xoay nhẹ trên điện thoại cho cân bằng thị giác */
     }
 }
 
