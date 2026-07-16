@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano Dude Easter Egg 🎹</title>
+    <style>
+        /* Toàn màn hình màu đen tối giản */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            font-family: sans-serif;
+        }
+
+        /* Khung chứa video */
+        video {
+            width: 100%;
+            height: 100%;
+            max-width: 800px;
+            max-height: 100vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Nút Play siêu to khổng lồ ở giữa màn hình */
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85); /* Làm mờ nền đen phía sau */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            cursor: pointer;
+            transition: opacity 0.5s ease, pointer-events 0.5s ease;
+        }
+
+        /* Thiết kế nút Play hình tròn tối giản */
+        .play-button {
+            width: 90px;
+            height: 90px;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        /* Biểu tượng hình tam giác Play */
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-top: 18px solid transparent;
+            border-bottom: 18px solid transparent;
+            border-left: 30px solid #1A2028; /* Màu xám đen tiệp với theme của bạn */
+            margin-left: 8px; /* Đẩy nhẹ sang phải để nằm chính giữa vòng tròn */
+        }
+
+        /* Dòng chữ gợi ý nhỏ phía dưới nút */
+        .play-text {
+            color: #FFFFFF;
+            margin-top: 20px;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            font-weight: bold;
+        }
+
+        /* Hiệu ứng di chuột vào nút Play */
+        .play-overlay:hover .play-button {
+            transform: scale(1.1);
+            background-color: #E7E7E7;
+        }
+
+        /* Khi bấm chơi, hiệu ứng biến mất */
+        .play-overlay.hidden {
+            opacity: 0;
+            pointer-events: none; /* Tránh cản trở việc click vào video sau đó */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Lớp phủ chứa nút Play bấm vào để kích hoạt -->
+    <div class="play-overlay" id="playOverlay" onclick="startPianoVideo()">
+        <div class="play-button">
+            <div class="play-icon"></div>
+        </div>
+        <div class="play-text">Click to Play Music</div>
+    </div>
+
+    <!-- Video (Không để chế độ muted và autoplay nữa) -->
+    <video loop playsinline controls id="pianoVideo">
+        <source src="piano-dude.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        function startPianoVideo() {
+            const video = document.getElementById('pianoVideo');
+            const overlay = document.getElementById('playOverlay');
+
+            // 1. Phát video (có đầy đủ âm thanh ngay lập tức)
+            video.play().then(() => {
+                // 2. Ẩn nút Play đi mượt mà bằng hiệu ứng CSS transition
+                overlay.classList.add('hidden');
+            }).catch((error) => {
+                console.log("Trình duyệt chặn phát video: ", error);
+            });
+        }
+    </script>
+
+</body>
+</html>
