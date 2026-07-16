@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    
+    <!-- Tích hợp Favicon ở góc màn hình (Đã sửa đường dẫn tương đối) -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <style>
+        /* ==========================================
+           1. LIÊN KẾT CÁC FONT CHỮ COOLVETICA (Đã sửa đường dẫn)
+           ========================================== */
+        @font-face {
+            font-family: 'Coolvetica Rg';
+            src: url('fonts/Coolvetica Rg.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Coolvetica Hv Comp';
+            src: url('fonts/Coolvetica Hv Comp.otf') format('opentype');
+            font-weight: 900;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Coolvetica Rg Cond';
+            src: url('fonts/Coolvetica Rg Cond.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Coolvetica Rg It';
+            src: url('fonts/Coolvetica Rg It.otf') format('opentype');
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        :root {
+            --bg-color: #E7E7E7;
+            --text-color: #1A2028;
+            --accent-red: #D35252;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Coolvetica Rg', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* ==========================================
+           2. KHU VỰC TƯƠNG TÁC SKYETO (BỎ VẪY TAY)
+           ========================================== */
+        .skyeto-box {
+            position: relative;
+            width: 160px;
+            height: 120px;
+            margin: 0 auto -10px auto;
+            cursor: pointer;
+            z-index: 5; /* Tăng z-index để không bị các lớp khác đè */
+        }
+
+        .skyeto-character {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .squish-once {
+            animation: pat-squish-once 0.4s ease-out;
+        }
+
+        .heart {
+            position: absolute;
+            color: var(--accent-red);
+            font-size: 1.5rem;
+            pointer-events: none;
+            animation: float-up 0.8s ease-out forwards;
+            z-index: 10;
+        }
+
+        /* Dòng chữ đếm số lần pat: Mặc định ẩn đi */
+        #pat-counter {
+            font-size: 0.9rem;
+            font-weight: bold;
+            font-family: 'Coolvetica Rg Cond', sans-serif;
+            margin-top: 5px;
+            height: 18px;
+            color: var(--text-color);
+            opacity: 0;
+            transition: opacity 0.5s ease; /* Hiệu ứng mờ dần mượt mà */
+        }
+
+        /* Thêm class này bằng JS để chữ hiện lên rồi mờ dần */
+        #pat-counter.show {
+            opacity: 1;
+            transition: none; /* Hiện lên ngay lập tức khi click */
+        }
+
+        /* ==========================================
+           3. SỬA LỖI ĐẢO MÀU (INVERT) SỐ 404
+           ========================================== */
+        .error-code-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 25px;
+            background-color: var(--bg-color); /* Ép trình duyệt nhận diện màu nền */
+            z-index: 1;
+        }
+
+        .error-code-text {
+            font-family: 'Coolvetica Hv Comp', sans-serif;
+            font-size: 6.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            line-height: 0.85;
+            color: var(--text-color);
+            margin: 0;
+            display: block;
+        }
+
+        /* Đặt hộp đè chính xác, sử dụng background trắng kết hợp mix-blend-mode */
+        .invert-box {
+            position: absolute;
+            bottom: 0;
+            left: 5%;
+            width: 90%;
+            height: 52px;
+            background-color: #FFFFFF; /* Dùng màu trắng để đạt hiệu ứng đảo màu tuyệt đối */
+            mix-blend-mode: difference; 
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* ==========================================
+           4. LAYOUT NỘI DUNG PHÍA DƯỚI
+           ========================================== */
+        .error-message-box {
+            display: flex;
+            align-items: stretch;
+            text-align: left;
+            margin: 20px 0;
+            gap: 15px;
+        }
+
+        .left-bar {
+            width: 18px;
+            background-color: var(--text-color);
+            flex-shrink: 0;
+        }
+
+        .message-text {
+            font-family: 'Coolvetica Rg It', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.3;
+            margin: 0;
+            word-break: break-all;
+        }
+
+        .search-bar-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-top: 25px;
+            gap: 10px;
+        }
+
+        .domain-prefix {
+            font-family: 'Coolvetica Rg Cond', sans-serif;
+            font-size: 1.2rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .input-wrapper {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .fake-input {
+            width: 100%;
+            background-color: var(--text-color);
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            font-family: 'Coolvetica Rg', sans-serif;
+            font-size: 0.8rem;
+            outline: none;
+        }
+
+        .fake-input::placeholder {
+            color: #8E9AA6;
+            opacity: 0.8;
+        }
+
+        .search-icon {
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.1s;
+        }
+
+        .search-icon:active {
+            transform: scale(0.9);
+        }
+
+        .footer-info {
+            font-size: 0.75rem;
+            margin-top: 20px;
+            text-align: left;
+            color: #555;
+            font-family: 'Coolvetica Rg', sans-serif;
+        }
+
+        .footer-info a {
+            color: var(--text-color);
+            text-decoration: underline;
+        }
+
+        /* ==========================================
+           5. ANIMATIONS
+           ========================================== */
+        @keyframes pat-squish-once {
+            0% { transform: scale(1); }
+            30% { transform: scaleY(0.78) scaleX(1.12); }
+            60% { transform: scaleY(1.08) scaleX(0.94); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-70px) scale(0.7);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Skyeto Box -->
+        <div class="skyeto-box" id="skyeto-pet" onclick="patSkyeto(event)">
+            <img class="skyeto-character" src="assets/skyeto-normal.png" alt="Skyeto Logo">
+        </div>
+        
+        <!-- Bộ đếm: Đã đổi sang tiếng Anh, không có emoji và sẽ mờ dần -->
+        <div id="pat-counter">You've patted Skyeto 0 times >:3</div>
+
+        <!-- Khối 404 kèm Box đảo màu (Invert) -->
+        <div class="error-code-container">
+            <h1 class="error-code-text">404</h1>
+            <div class="invert-box"></div>
+        </div>
+
+        <!-- Khung báo lỗi -->
+        <div class="error-message-box">
+            <div class="left-bar"></div>
+            <p class="message-text">
+                Sorry for the inconvenience :< , it seems the page <span id="current-url" style="font-weight: bold;">stellanskyeto.github.io/abcxyz</span> doesn't exist anymore.
+            </p>
+        </div>
+
+        <!-- Thanh tìm kiếm chuyển hướng -->
+        <div class="search-bar-container">
+            <span class="domain-prefix">stellanskyeto.github.io/</span>
+            <div class="input-wrapper">
+                <input type="text" class="fake-input" placeholder="Please enter a different link." id="search-input">
+            </div>
+            <div class="search-icon" onclick="handleSearchRedirect()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A2028" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-info">
+            submit bug here : <a href="mailto:nguyenminhquanlvbook@gmail.com">nguyenminhquanlvbook@gmail.com</a>
+        </div>
+
+    </div>
+
+    <script>
+        // Hiển thị link bị gõ sai
+        document.getElementById("current-url").innerText = window.location.href;
+
+        // Cấu hình đổi ảnh và tương tác
+        const imgNormal = "assets/skyeto-normal.png";
+        const imgHappy = "assets/skyeto-happy.png";
+
+        const skyetoImg = document.querySelector(".skyeto-character");
+        const counterEl = document.getElementById("pat-counter");
+        
+        let patCount = 0;
+        let resetImgTimeout;
+        let fadeOutTimeout;
+
+        function patSkyeto(event) {
+            patCount++;
+            
+            // 1. Đổi ảnh biểu cảm vui vẻ
+            skyetoImg.src = imgHappy;
+            
+            // 2. Nhún nhảy nhẹ 1 lần
+            skyetoImg.classList.remove("squish-once");
+            void skyetoImg.offsetWidth; 
+            skyetoImg.classList.add("squish-once");
+            
+            // 3. Cập nhật chữ và xử lý hiệu ứng mờ dần sau 1 giây
+            counterEl.innerText = `You've patted Skyeto ${patCount} times >:3`;
+            
+            // Hiện chữ lên ngay lập tức
+            counterEl.classList.add("show");
+
+            // Xóa bộ đếm giờ cũ nếu người dùng click liên tục
+            clearTimeout(fadeOutTimeout);
+            
+            // Chờ đúng 1 giây (1000ms) rồi mới bắt đầu mờ dần đi
+            fadeOutTimeout = setTimeout(() => {
+                counterEl.classList.remove("show");
+            }, 1000);
+
+            // 4. Tạo hiệu ứng tim bay
+            createHeart(event.clientX, event.clientY);
+
+            // 5. Trở lại trạng thái bình thường sau 0.5 giây
+            clearTimeout(resetImgTimeout);
+            resetImgTimeout = setTimeout(() => {
+                skyetoImg.src = imgNormal;
+            }, 500);
+        }
+
+        function createHeart(x, y) {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerText = "💖";
+            
+            // Điều chỉnh vị trí tim xuất hiện ngay tại đầu ngón tay/chuột click
+            heart.style.left = `${x - 10}px`;
+            heart.style.top = `${y - 20}px`;
+            
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 800);
+        }
+
+        // Logic chuyển hướng
+        function handleSearchRedirect() {
+            const inputEl = document.getElementById("search-input");
+            let value = inputEl.value.trim();
+            
+            if (value === "") return; 
+            
+            if (value.startsWith("/")) {
+                value = value.substring(1);
+            }
+            
+            window.location.href = "/" + value;
+        }
+
+        document.getElementById("search-input").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                handleSearchRedirect();
+            }
+        });
+    </script>
+</body>
+</html>
