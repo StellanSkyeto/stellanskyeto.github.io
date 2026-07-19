@@ -1,39 +1,35 @@
 /* ==========================================================================
-   1. KHAI BÁO FONT CHỮ COOLVETICA (CHÍNH XÁC THEO THƯ MỤC TRÊN MÁY BẠN)
+   1. KHAI BÁO FONT CHỮ COOLVETICA
    ========================================================================== */
 @font-face {
     font-family: 'Coolvetica-Rg';
     src: url('font/Coolvetica Rg.otf') format('opentype');
 }
-
 @font-face {
     font-family: 'Coolvetica-Cram';
     src: url('font/Coolvetica Rg Cram.otf') format('opentype');
 }
-
 @font-face {
     font-family: 'Coolvetica-It';
     src: url('font/Coolvetica Rg It.otf') format('opentype');
 }
-
 @font-face {
     font-family: 'Coolvetica-Cond';
     src: url('font/Coolvetica Rg Cond.otf') format('opentype');
 }
-
 @font-face {
     font-family: 'Coolvetica-Hv';
     src: url('font/Coolvetica Hv Comp.otf') format('opentype');
 }
 
 /* ==========================================================================
-   2. QUẢN LÝ BẢNG MÀU THƯƠNG HIỆU (BIẾN CSS)
+   2. QUẢN LÝ BẢNG MÀU THƯƠNG HIỆU
    ========================================================================== */
 :root {
-    --bg-gray-scarf: #A2B8FF;   /* Màu xám tro chủ đạo toàn nền */
-    --text-dark: #1A2026;      /* Màu đen cấu trúc chính */
-    --accent-red: #D35252;     /* Màu đỏ sừng Skyeto */
-    --star-gold: #F4D068;      /* Màu vàng ngôi sao */
+    --bg-gray-scarf: #A2B8FF;   
+    --text-dark: #1A2026;      
+    --accent-red: #D35252;     
+    --star-gold: #F4D068;      
 }
 
 /* ==========================================================================
@@ -42,7 +38,7 @@
 body {
     background-color: var(--bg-gray-scarf);
     color: var(--text-dark);
-    font-family: 'Coolvetica-Rg', sans-serif; /* Mặc định sử dụng bản Regular */
+    font-family: 'Coolvetica-Rg', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -51,13 +47,12 @@ body {
     min-height: 100vh;
     justify-content: space-between;
     -webkit-font-smoothing: antialiased;
-    user-select: none; /* Chống bôi đen chọn chữ lung tung trên web */
+    user-select: none;
     box-sizing: border-box;
 }
 
-/* Khung chứa trung tâm giới hạn chiều rộng để layout không bị vỡ */
 .main-container {
-    max-width: 1050px; /* Đã nới rộng để hiển thị đẹp hơn trên PC */
+    max-width: 1050px;
     width: 100%;
     padding: 40px 24px;
     margin: auto;
@@ -66,7 +61,7 @@ body {
 }
 
 /* ==========================================================================
-   4. HIỆU ỨNG TIÊU ĐỀ GIẬT LỚP & KHỐI ĐẢO MÀU LỆCH (INVERT)
+   4. HIỆU ỨNG TIÊU ĐỀ
    ========================================================================== */
 .header-wrap {
     position: relative;
@@ -77,10 +72,9 @@ body {
     align-items: center;
 }
 
-/* Chữ nền to in hoa sát nhau */
 .title-bg {
     font-family: 'Coolvetica-Hv', sans-serif; 
-    font-size: clamp(2.5rem, 8vw, 3.5rem); /* Tự động co giãn cỡ chữ theo màn hình không lo vỡ hàng */
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
     color: var(--text-dark);
     text-transform: uppercase;
     letter-spacing: -1px;
@@ -88,27 +82,23 @@ body {
     text-align: center;
 }
 
-/* Khối chữ nhật trắng đè lên trên và cố tình làm lệch khối */
 .title-fg {
     position: absolute;
     top: 50%;
-    left: 55%; /* Tăng nhẹ sang phải để lệch một cách cố ý */
+    left: 55%;
     transform: translate(-50%, -20%); 
     background-color: #FFFFFF;
-    color: #FFFFFF; /* Để màu chữ trắng kết hợp blend-mode đảo màu */
+    color: #FFFFFF;
     font-family: 'Coolvetica-Cram', sans-serif; 
-    font-size: clamp(1.2rem, 4vw, 1.8rem); /* Co giãn linh hoạt */
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
     padding: 4px 16px;
     text-transform: lowercase;
     white-space: nowrap;
-    
-    /* Kỹ thuật tương tác layer đảo màu giống hệt Ibis Paint X */
     mix-blend-mode: difference; 
     pointer-events: none;
     box-shadow: 3px 3px 0px var(--text-dark);
 }
 
-/* Dòng chữ thông báo nhỏ phía dưới tiêu đề */
 .status-message {
     font-family: 'Coolvetica-Cond', sans-serif; 
     font-size: 0.85rem;
@@ -119,29 +109,27 @@ body {
 }
 
 /* ==========================================================================
-   5. BỐ CỤC NỘI DUNG CHÍNH (XỬ LÝ ĐA GIAO DIỆN PC & MOBILE)
+   5. BỐ CỤC NỘI DUNG CHÍNH
    ========================================================================== */
 .content-layout {
     display: flex;
-    flex-direction: row; /* Mặc định xếp hàng ngang trên PC */
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     gap: 40px; 
 }
 
-/* THANH SỌC DỌC MÀU ĐEN ÔM LẤY DANH SÁCH LINKS BÊN TRÁI */
 .links-section {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    border-left: 8px solid var(--text-dark); /* Dải sọc đứng đen dày dặn như bản vẽ */
+    border-left: 8px solid var(--text-dark);
     padding-left: 15px; 
     text-align: left;
-    flex: 1; /* Tự động co dãn chiếm không gian hợp lý */
+    flex: 1;
 }
 
-/* THIẾT KẾ NÚT LINKS TEXT-FOCUS NHỎ GỌN */
 .nav-button {
     text-decoration: none;
     color: var(--text-dark);
@@ -154,65 +142,28 @@ body {
     width: fit-content;
 }
 
-/* HIỆU ỨNG HOVER: LÀM NGHIÊNG CHỮ BẰNG TOÁN HỌC CSS ĐỂ TRÁNH GIẬT KHUNG */
 .nav-button:hover {
     color: var(--accent-red);
-    padding-left: 8px; /* Chữ dịch nhẹ sang phải mượt mà */
-    transform: skewX(-12deg); /* Làm nghiêng chữ giả lập bản Italic cực kỳ an toàn */
+    padding-left: 8px;
+    transform: skewX(-12deg);
 }
 
-/* Trạng thái BÌNH THƯỜNG của Mascot trên PC (luôn to 190px để cân đối giao diện mới) */
 #skyeto-mascot {
     width: 190px; 
     height: auto;
     cursor: pointer;
     display: block;
     filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.15));
-    transition: transform 0.2s ease, width 0.3s ease; /* Hiệu ứng co giãn mượt mà cả khi rê vào lẫn bỏ ra */
+    transition: transform 0.2s ease, width 0.3s ease;
 }
 
-/* Hiệu ứng nẩy nhẹ của Skyeto Mascot khi Hover */
 #skyeto-mascot:hover {
-    transform: scale(1.08) rotate(-3deg); /* Nghiêng nhẹ tinh nghịch khi chỉ chuột vào */
+    transform: scale(1.08) rotate(-3deg);
 }
 
 /* ==========================================================================
-   6. RESPONSIVE MEDIA QUERIES (VÁ LỖI CHO ĐIỆN THOẠI)
+   6. THANH TÌM KIẾM & HỆ THỐNG THẺ GAME (CẬP NHẬT THUMBNAIL)
    ========================================================================== */
-@media (max-width: 580px) {
-    .content-layout {
-        flex-direction: column-reverse; /* Đẩy Skyeto lên trên, cụm thông tin xuống dưới trên Mobile */
-        gap: 40px;
-    }
-    
-    .links-section {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    /* Thêm dòng này để fix size nhỏ lại trên điện thoại */
-    #skyeto-mascot {
-        width: 145px; 
-    }
-}
-
-/* ==========================================================================
-   7. FOOTER SẠCH SẼ TỐI GIẢN
-   ========================================================================== */
-footer {
-    font-family: 'Coolvetica-Cond', sans-serif;
-    padding: 35px 0;
-    font-size: 0.75rem;
-    letter-spacing: 0.5px;
-    opacity: 0.5;
-    text-align: center;
-    width: 100%;
-}
-/* ==========================================================================
-   8. BỔ SUNG THANH TÌM KIẾM & HỆ THỐNG THẺ GAME (PHIÊN BẢN 1.0)
-   ========================================================================== */
-
-/* Thùng chứa tổng của thanh tìm kiếm URL */
 .search-box-wrapper {
     display: flex;
     align-items: center;
@@ -225,7 +176,6 @@ footer {
     margin-bottom: 5px;
 }
 
-/* Tiền tố cố định của link */
 .url-prefix {
     font-family: 'Coolvetica-Cond', sans-serif;
     font-size: 1rem;
@@ -234,7 +184,6 @@ footer {
     padding-right: 4px;
 }
 
-/* Ô nhập liệu tinh gọn */
 #custom-search-input {
     flex: 1;
     border: none;
@@ -247,7 +196,6 @@ footer {
     width: 100%;
 }
 
-/* Nút tìm kiếm chứa icon */
 #search-submit-btn {
     background: none;
     border: none;
@@ -258,17 +206,15 @@ footer {
     padding: 4px;
 }
 
-/* Vẽ hình kính lúp tối giản bằng kỹ thuật SVG đường nét phẳng */
 .minimal-search-svg {
     width: 20px;
     height: 20px;
     fill: none;
     stroke: var(--text-dark);
-    stroke-width: 3px; /* Đường nét dày dặn đồng bộ với viền khung */
+    stroke-width: 3px;
     stroke-linecap: square;
 }
 
-/* Khung chứa các thẻ liên kết game */
 .game-cards-container {
     display: flex;
     flex-direction: column;
@@ -278,11 +224,10 @@ footer {
     margin-bottom: 5px;
 }
 
-/* Cấu trúc thiết kế chung cho Thẻ (Card Layout) */
 .custom-card {
     display: flex;
     align-items: center;
-    padding: 16px 20px;
+    padding: 12px 16px;
     border: 3px solid var(--text-dark);
     box-sizing: border-box;
     text-decoration: none;
@@ -291,41 +236,97 @@ footer {
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Định dạng chữ tiêu đề thẻ dùng font nén đặc trưng */
+/* KHUNG CHỨA ẢNH THUMBNAIL VUÔNG */
+.card-thumbnail-wrapper {
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--text-dark);
+    margin-right: 14px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giữ đúng tỉ lệ ảnh không bị móp méo */
+    display: block;
+}
+
+.card-info-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title-row {
+    display: flex;
+    align-items: center;
+}
+
 .card-main-title {
     font-family: 'Coolvetica-Hv', sans-serif;
     font-size: 1.4rem;
     letter-spacing: 1px;
 }
 
-/* --- THẺ GAME ĐANG HOẠT ĐỘNG (Feed the Skyeto) --- */
 .game-active-card {
     background-color: #FFFFFF;
     color: var(--text-dark);
 }
 
-/* Chấm tròn nhỏ thể hiện trạng thái sẵn sàng chơi */
 .card-status-dot {
     width: 10px;
     height: 10px;
-    background-color: #2ecc71; /* Màu xanh lá nổi bật */
+    background-color: #2ecc71;
     border-radius: 50%;
-    margin-right: 14px;
+    margin-right: 10px;
     display: inline-block;
+    flex-shrink: 0;
 }
 
-/* Hiệu ứng tương tác phản hồi khi bấm/chạm trên thiết bị di động */
 .game-active-card:active {
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
     background-color: #f8f9fa;
 }
 
-/* --- THẺ TRỐNG CHƯA HOẠT ĐỘNG (Coming Soon) --- */
 .game-coming-card {
-    background-color: rgba(0, 0, 0, 0.05); /* Làm mờ khối để tạo cảm giác ẩn */
-    border: 3px dashed var(--text-dark); /* Đường nét đứt đoạn */
-    color: rgba(26, 32, 38, 0.4); /* Chữ mờ hẳn đi */
-    pointer-events: none; /* Khóa không cho nhấn vào */
-    justify-content: center; /* Đưa chữ ra chính giữa */
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 3px dashed var(--text-dark);
+    color: rgba(26, 32, 38, 0.4);
+    pointer-events: none;
+    justify-content: center;
+    min-height: 78px; /* Đảm bảo chiều cao bằng với thẻ có thumbnail */
 }
+
+/* ==========================================================================
+   7. RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 580px) {
+    .content-layout {
+        flex-direction: column-reverse;
+        gap: 40px;
+    }
+    .links-section {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #skyeto-mascot {
+        width: 145px; 
+    }
+}
+
+footer {
+    font-family: 'Coolvetica-Cond', sans-serif;
+    padding: 35px 0;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    opacity: 0.5;
+    text-align: center;
+    width: 100%;
+}
+
