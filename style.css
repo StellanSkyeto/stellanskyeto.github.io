@@ -162,7 +162,7 @@ body {
 }
 
 /* ==========================================================================
-   6. THANH TÌM KIẾM & HỆ THỐNG THẺ GAME (CẬP NHẬT THUMBNAIL)
+   6. THANH TÌM KIẾM & HỆ THỐNG THẺ GAME (DẠNG BANNER CHỮ NHẬT TO 2:1)
    ========================================================================== */
 .search-box-wrapper {
     display: flex;
@@ -218,48 +218,45 @@ body {
 .game-cards-container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 20px; 
     width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
+/* CẤU TRÚC THẺ BANNER TO */
 .custom-card {
     display: flex;
-    align-items: center;
-    padding: 12px 16px;
+    flex-direction: column; 
     border: 3px solid var(--text-dark);
     box-sizing: border-box;
     text-decoration: none;
     width: 100%;
-    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.15);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
+    overflow: hidden; 
 }
 
-/* KHUNG CHỨA ẢNH THUMBNAIL VUÔNG */
+/* KHUNG CHỨA BANNER TỈ LỆ 2:1 CHUẨN 2000x1000 */
 .card-thumbnail-wrapper {
-    width: 50px;
-    height: 50px;
-    border: 2px solid var(--text-dark);
-    margin-right: 14px;
+    width: 100%;
+    aspect-ratio: 2 / 1; 
+    border-bottom: 3px solid var(--text-dark); 
     overflow: hidden;
-    flex-shrink: 0;
     background-color: #eee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .card-thumbnail-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Giữ đúng tỉ lệ ảnh không bị móp méo */
+    object-fit: cover; 
     display: block;
 }
 
+/* PHẦN CHỮ THÔNG TIN DƯỚI BANNER */
 .card-info-wrap {
-    display: flex;
-    flex-direction: column;
+    padding: 12px 16px;
+    background-color: #FFFFFF;
 }
 
 .card-title-row {
@@ -274,7 +271,6 @@ body {
 }
 
 .game-active-card {
-    background-color: #FFFFFF;
     color: var(--text-dark);
 }
 
@@ -285,22 +281,25 @@ body {
     border-radius: 50%;
     margin-right: 10px;
     display: inline-block;
-    flex-shrink: 0;
 }
 
+/* Hiệu ứng ấn nút */
 .game-active-card:active {
     transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
-    background-color: #f8f9fa;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15);
 }
 
+/* THẺ COMING SOON DẠNG ĐƯỜNG NÉT ĐỨT KHUNG TO CHO ĐỒNG BỘ */
 .game-coming-card {
     background-color: rgba(0, 0, 0, 0.05);
     border: 3px dashed var(--text-dark);
     color: rgba(26, 32, 38, 0.4);
     pointer-events: none;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    min-height: 78px; /* Đảm bảo chiều cao bằng với thẻ có thumbnail */
+    aspect-ratio: 2 / 1; 
+    width: 100%;
 }
 
 /* ==========================================================================
