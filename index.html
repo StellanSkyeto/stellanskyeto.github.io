@@ -27,6 +27,20 @@
         <div class="content-layout">
             
             <main class="links-section">
+                <!-- THANH TÌM KIẾM MÔ PHỎNG ĐƯỜNG DẪN URL -->
+                <div class="search-box-wrapper">
+                    <span class="url-prefix">stellanskyeto.github.io/</span>
+                    <input type="text" id="custom-search-input" placeholder="[nhập link khác...]">
+                    <button id="search-submit-btn" aria-label="Search">
+                        <!-- Biểu tượng kính lúp tối giản: 1 hình tròn và 1 đường chéo vuông vức -->
+                        <svg viewBox="0 0 24 24" class="minimal-search-svg">
+                            <circle cx="11" cy="11" r="6" />
+                            <line x1="16" y1="16" x2="21" y2="21" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Nút Guns.lol và khối menu rút gọn -->
                 <div class="guns-lol-wrapper" style="display: flex; align-items: center; gap: 10px; width: 100%;">
                     <a href="https://guns.lol/stellanskyeto" target="_blank" class="nav-button" style="font-family: 'Coolvetica-Hv', sans-serif; font-size: 1.2rem; margin: 0;">Guns.lol</a>
                     <button onclick="toggleMenu()" id="arrow-btn" style="background: var(--text-dark); color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-size: 14px; cursor: pointer; font-family: monospace;">▼</button>
@@ -44,12 +58,27 @@
                     <a href="https://skyeto.fandom.com" target="_blank" class="nav-button">WIKI</a>
                 </div>
 
+                <!-- Khối Welcome -->
                 <div class="welcome-box" style="background-color: var(--text-dark); color: #ffffff; padding: 20px; border-radius: 8px; text-align: left; margin-top: 25px; font-size: 0.9rem; line-height: 1.5; width: 100%; box-sizing: border-box; box-shadow: 4px 4px 0px rgba(0,0,0,0.15);">
                     <h3 style="margin-top: 0; font-family: 'Coolvetica-Hv', sans-serif; text-transform: uppercase; border-bottom: 2px solid #333; padding-bottom: 5px; color: var(--star-gold);">Welcome :3</h3>
                     <p style="margin: 8px 0;">Hello! I am Quan (Stellan Skyeto). This is my official website built to archive my creative journey.</p>
                     <p style="margin: 12px 0 0 0; font-size: 0.8rem; color: #a4b0be; font-family: 'Coolvetica-It', sans-serif;">
                         About this site: This website started as a small programming experiment when I was learning to code, but now it's my own personal creative space!
                     </p>
+                </div>
+
+                <!-- CỤM THẺ TRÒ CHƠI DỰ ÁN (ĐÃ CHUYỂN XUỐNG DƯỚI WELCOME) -->
+                <div class="game-cards-container" style="margin-top: 25px;">
+                    <!-- Thẻ game Feed the Skyeto -->
+                    <a href="feedtheskyeto/index.html" class="custom-card game-active-card">
+                        <span class="card-status-dot"></span>
+                        <div class="card-main-title">FEED THE SKYETO</div>
+                    </a>
+
+                    <!-- Thẻ trống dự án sắp ra mắt -->
+                    <div class="custom-card game-coming-card">
+                        <div class="card-main-title">COMING SOON ^^</div>
+                    </div>
                 </div>
             </main>
 
@@ -72,3 +101,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

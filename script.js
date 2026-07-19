@@ -1,4 +1,6 @@
+// ==========================================================================
 // 1. Hàm đóng / mở rộng danh sách các liên kết link
+// ==========================================================================
 function toggleMenu() {
     const hiddenLinks = document.getElementById("hidden-links");
     const arrowBtn = document.getElementById("arrow-btn");
@@ -12,7 +14,9 @@ function toggleMenu() {
     }
 }
 
+// ==========================================================================
 // 2. Hàm giả lập tiếng mèo kêu Meow! và đổi ảnh Skyeto biểu cảm mở miệng
+// ==========================================================================
 function makeMeow() {
     const bubble = document.getElementById("speech-bubble");
     const mascotImg = document.getElementById("skyeto-mascot");
@@ -44,4 +48,28 @@ function makeMeow() {
         bubble.style.visibility = "hidden";
         mascotImg.src = "skyeto-closedmouth.png";
     }, 1000);
+}
+
+// ==========================================================================
+// 3. XỬ LÝ SỰ KIỆN TÌM KIẾM VÀ CHUYỂN HƯỚNG LIÊN KẾT URL TÙY CHỈNH
+// ==========================================================================
+
+// Lắng nghe sự kiện khi người dùng bấm vào nút kính lúp
+document.getElementById('search-submit-btn').addEventListener('click', executeSearch);
+
+// Lắng nghe sự kiện khi người dùng gõ chữ và nhấn phím Enter trên bàn phím
+document.getElementById('custom-search-input').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        executeSearch();
+    }
+});
+
+// Hàm thực hiện chuyển hướng trang
+function executeSearch() {
+    const inputVal = document.getElementById('custom-search-input').value.trim();
+    
+    if (inputVal !== "") {
+        // Nếu người dùng chỉ gõ tên mục (ví dụ: "feedtheskyeto"), web sẽ tự chuyển sang trang đó
+        window.location.href = inputVal;
+    }
 }
