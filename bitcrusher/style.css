@@ -1,0 +1,222 @@
+/* ==========================================================================
+   1. FONT COOLVETICA DECLARATIONS
+   ========================================================================== */
+@font-face {
+    font-family: 'Coolvetica-Rg';
+    src: url('../font/Coolvetica Rg.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Coolvetica-Cram';
+    src: url('../font/Coolvetica Rg Cram.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Coolvetica-Cond';
+    src: url('../font/Coolvetica Rg Cond.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Coolvetica-Hv';
+    src: url('../font/Coolvetica Hv Comp.otf') format('opentype');
+}
+
+/* ==========================================================================
+   2. BRAND COLOR PALETTE & VARIABLES
+   ========================================================================== */
+:root {
+    --bg-gray-scarf: #A2B8FF;   
+    --text-dark: #1A2026;      
+    --accent-red: #D35252;     
+    --star-gold: #F4D068;
+    
+    --card-bg: #13151c;
+    --accent-cyan: #00f2fe;
+    --accent-glow: rgba(0, 242, 254, 0.25);
+    --border: #1f2430;
+}
+
+/* ==========================================================================
+   3. RESET & LAYOUT SETUP
+   ========================================================================== */
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+    background-color: var(--bg-gray-scarf);
+    color: var(--text-dark);
+    font-family: 'Coolvetica-Rg', -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+.main-container {
+    max-width: 600px;
+    width: 100%;
+    padding: 24px 16px;
+    margin: auto;
+}
+
+/* ==========================================================================
+   4. HEADER & COOLVETICA TYPOGRAPHY
+   ========================================================================== */
+.header-wrap {
+    position: relative;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-bg {
+    font-family: 'Coolvetica-Hv', sans-serif; 
+    font-size: clamp(2.2rem, 7vw, 3.2rem);
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+}
+
+.title-fg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -10%); 
+    background-color: var(--text-dark);
+    color: #FFFFFF;
+    font-family: 'Coolvetica-Cram', sans-serif; 
+    font-size: clamp(1rem, 3.5vw, 1.4rem);
+    padding: 2px 12px;
+    text-transform: lowercase;
+    white-space: nowrap;
+    box-shadow: 3px 3px 0px #FFFFFF;
+}
+
+.status-message {
+    font-family: 'Coolvetica-Cond', sans-serif; 
+    font-size: 0.95rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   5. CARDS & BUTTONS STYLING
+   ========================================================================== */
+.card {
+    background: var(--card-bg);
+    border: 3px solid var(--text-dark);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 4px 4px 0px var(--text-dark);
+    color: #f0f2f5;
+}
+
+.canvas-container {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #07080b;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+canvas { width: 100%; height: 100%; display: block; }
+
+.control-item { margin-bottom: 14px; }
+.control-item:last-child { margin-bottom: 0; }
+
+.control-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Coolvetica-Cond', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    color: #a0aec0;
+    margin-bottom: 6px;
+}
+
+.control-value { color: var(--accent-cyan); font-weight: 600; }
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #232733;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 10px var(--accent-glow);
+    cursor: pointer;
+}
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 3px solid var(--text-dark);
+    font-family: 'Coolvetica-Rg', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    box-shadow: 3px 3px 0px var(--text-dark);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px var(--text-dark);
+}
+
+.btn-file {
+    background: var(--star-gold);
+    color: var(--text-dark);
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: var(--accent-cyan);
+    color: var(--text-dark);
+    font-weight: bold;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+
+footer {
+    font-family: 'Coolvetica-Cond', sans-serif;
+    padding: 25px 0 10px 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+    text-align: center;
+    width: 100%;
+		}
