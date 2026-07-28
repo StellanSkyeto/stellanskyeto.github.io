@@ -328,4 +328,80 @@ footer {
     text-align: center;
     width: 100%;
 }
+/* ==========================================================================
+   HAMBURGER MENU (3 GẠCH GÓC TRÊN BÊN PHẢI) & SIDE DRAWER
+   ========================================================================== */
+#hamburger-btn {
+    background-color: var(--text-dark);
+    color: #FFFFFF;
+    border: 2px solid var(--text-dark);
+    font-size: 1.3rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s ease, background 0.15s ease;
+}
 
+#hamburger-btn:hover {
+    transform: scale(1.08);
+    background-color: var(--accent-red);
+}
+
+.nav-drawer {
+    position: fixed;
+    top: 0; right: -280px;
+    width: 240px;
+    height: 100vh;
+    background-color: var(--text-dark);
+    box-shadow: -4px 0px 10px rgba(0,0,0,0.3);
+    z-index: 100;
+    transition: right 0.3s ease-in-out;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-drawer.open {
+    right: 0;
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--star-gold);
+    font-family: 'Coolvetica-Hv', sans-serif;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.close-drawer-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.drawer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Coolvetica-Rg', sans-serif;
+    font-size: 1rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.drawer-links a:hover {
+    color: var(--star-gold);
+    transform: translateX(5px);
+	}

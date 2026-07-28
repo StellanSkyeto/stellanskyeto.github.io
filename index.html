@@ -9,15 +9,37 @@
 </head>
 <body>
 
+    <!-- Favicon góc trái -->
     <div class="useless-favicon" style="position: absolute; top: 15px; left: 15px; z-index: 20;">
         <img src="favicon.png" alt="Favicon" style="width: 32px; height: 32px; display: block; opacity: 0.8;">
+    </div>
+
+    <!-- ICON MENU 3 GẠCH GÓC TRÊN BÊN PHẢI -->
+    <div class="top-nav-menu" style="position: absolute; top: 15px; right: 15px; z-index: 30;">
+        <button id="hamburger-btn" onclick="toggleNavMenu()" aria-label="Toggle Navigation Menu">
+            ☰
+        </button>
+    </div>
+
+    <!-- MENU ĐIỀU HƯỚNG TRƯỢT/SỔ RA TỪ MENU 3 GẠCH -->
+    <div id="side-nav-drawer" class="nav-drawer">
+        <div class="drawer-header">
+            <span>NAVIGATION</span>
+            <button onclick="toggleNavMenu()" class="close-drawer-btn">✕</button>
+        </div>
+        <div class="drawer-links">
+            <a href="#quick-links">🔗 Social Links</a>
+            <a href="#tools-games">🕹️ Tools & Games</a>
+            <a href="#skyeto-wiki">🌟 Skyeto Wiki</a>
+            <a href="https://skyeto.fandom.com" target="_blank">📚 Fandom Wiki</a>
+        </div>
     </div>
 
     <div class="main-container">
         
         <header class="header-wrap">
             <div class="title-bg">Stellan Skyeto's official website :D</div>
-            <div class="title-fg">made by Nguyen Minh Quan </div>
+            <div class="title-fg">made by Nguyen Minh Quan</div>
         </header>
         
         <div class="status-message">
@@ -26,13 +48,12 @@
 
         <div class="content-layout">
             
-            <main class="links-section">
+            <main class="links-section" id="quick-links">
                 <!-- THANH TÌM KIẾM MÔ PHỎNG ĐƯỜNG DẪN URL -->
                 <div class="search-box-wrapper">
                     <span class="url-prefix">stellanskyeto.github.io/</span>
                     <input type="text" id="custom-search-input" placeholder="[enter link here...]">
                     <button id="search-submit-btn" aria-label="Search">
-                        <!-- Biểu tượng kính lúp tối giản: 1 hình tròn và 1 đường chéo vuông vức -->
                         <svg viewBox="0 0 24 24" class="minimal-search-svg">
                             <circle cx="11" cy="11" r="6" />
                             <line x1="16" y1="16" x2="21" y2="21" />
@@ -55,66 +76,82 @@
                     <a href="https://www.roblox.com/users/4669452742/profile" target="_blank" class="nav-button">ROBLOX</a>
                     <a href="https://discord.com/users/1306851876737908756" target="_blank" class="nav-button">DISCORD</a>
                     <a href="https://discord.gg/e8FkssEwzV" target="_blank" class="nav-button">STELLANSKYETO'S SERVER ( DC )</a>
-                    <a href="https://skyeto.fandom.com" target="_blank" class="nav-button">WIKI</a>
+                    <a href="https://skyeto.fandom.com" target="_blank" class="nav-button">WIKI FANDOM</a>
                 </div>
 
                 <!-- Khối Welcome -->
-                <div class="welcome-box" style="background-color: var(--text-dark); color: #ffffff; padding: 20px; border-radius: 8px; text-align: left; margin-top: 25px; font-size: 0.9rem; line-height: 1.5; width: 100%; box-sizing: border-box; box-shadow: 4px 4px 0px rgba(0,0,0,0.15);">
+                <div class="welcome-box" style="background-color: var(--text-dark); color: #ffffff; padding: 20px; border-radius: 8px; text-align: left; margin-top: 15px; font-size: 0.9rem; line-height: 1.5; width: 100%; box-sizing: border-box; box-shadow: 4px 4px 0px rgba(0,0,0,0.15);">
                     <h3 style="margin-top: 0; font-family: 'Coolvetica-Hv', sans-serif; text-transform: uppercase; border-bottom: 2px solid #333; padding-bottom: 5px; color: var(--star-gold);">Welcome :3</h3>
                     <p style="margin: 8px 0;">Hello! I am Quan (Stellan Skyeto). This is my official website built to archive my creative journey.</p>
-                    <p style="margin: 12px 0 0 0; font-size: 0.8rem; color: #a4b0be; font-family: 'Coolvetica-It', sans-serif;">
-                        About this site: This website started as a small programming experiment when I was learning to code, but now it's my own personal creative space!
-                    </p>
                 </div>
 
-                <!-- CỤM THẺ DỰ ÁN WEB & GAME (DẠNG BANNER CHỮ NHẬT TO) -->
-<div class="game-cards-container" style="margin-top: 25px;">
+                <!-- CỤM THẺ DỰ ÁN WEB, TOOLS & GAMES LAB -->
+                <div class="game-cards-container" id="tools-games" style="margin-top: 25px;">
+                    <div style="font-family: 'Coolvetica-Hv', sans-serif; font-size: 1.1rem; text-transform: uppercase; color: var(--text-dark); margin-bottom: -5px;">
+                        🕹️ TOOLS & GAMES LAB
+                    </div>
 
-    <!-- 1. Thẻ game Feed the Skyeto -->
-    <a href="feedtheskyeto/index.html" class="custom-card game-active-card">
-        <div class="card-thumbnail-wrapper">
-            <img src="feedtheskyeto-thumbnail.png" alt="Feed the Skyeto Banner" class="card-thumbnail-img">
-        </div>
-        <div class="card-info-wrap">
-            <div class="card-title-row">
-                <span class="card-status-dot"></span>
-                <div class="card-main-title">FEED THE SKYETO</div>
-            </div>
-        </div>
-    </a>
+                    <!-- 1. Feed the Skyeto -->
+                    <a href="feedtheskyeto/index.html" class="custom-card game-active-card">
+                        <div class="card-thumbnail-wrapper">
+                            <img src="feedtheskyeto-thumbnail.png" alt="Feed the Skyeto Banner" class="card-thumbnail-img">
+                        </div>
+                        <div class="card-info-wrap">
+                            <div class="card-title-row">
+                                <span class="card-status-dot"></span>
+                                <div class="card-main-title">FEED THE SKYETO</div>
+                            </div>
+                        </div>
+                    </a>
 
-    <!-- 2. Thẻ trang web Bitcrusher -->
-    <a href="bitcrusher/index.html" class="custom-card game-active-card">
-        <div class="card-thumbnail-wrapper">
-            <img src="bitcrusher-thumbnail.png" alt="Bitcrusher Banner" class="card-thumbnail-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 400 200\'><rect width=\'100%\' height=\'100%\' fill=\'%231A2026\'/><text x=\'50%\' y=\'50%\' fill=\'%23F4D068\' font-family=\'sans-serif\' font-size=\'24\' font-weight=\'bold\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🎛️ BITCRUSHER AUDIO</text></svg>'">
-        </div>
-        <div class="card-info-wrap">
-            <div class="card-title-row">
-                <span class="card-status-dot"></span>
-                <div class="card-main-title">BITCRUSHER</div>
-            </div>
-        </div>
-    </a>
+                    <!-- 2. Bitcrusher Audio -->
+                    <a href="bitcrusher/index.html" class="custom-card game-active-card">
+                        <div class="card-thumbnail-wrapper">
+                            <img src="bitcrusher-thumbnail.png" alt="Bitcrusher Banner" class="card-thumbnail-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 400 200\'><rect width=\'100%\' height=\'100%\' fill=\'%231A2026\'/><text x=\'50%\' y=\'50%\' fill=\'%23F4D068\' font-family=\'sans-serif\' font-size=\'24\' font-weight=\'bold\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🎛️ BITCRUSHER AUDIO</text></svg>'">
+                        </div>
+                        <div class="card-info-wrap">
+                            <div class="card-title-row">
+                                <span class="card-status-dot"></span>
+                                <div class="card-main-title">BITCRUSHER AUDIO</div>
+                            </div>
+                        </div>
+                    </a>
 
-    <!-- 3. Thẻ trang web Starcolor (Đang phát triển) -->
-    <a href="starcolor/index.html" class="custom-card game-active-card" style="border-style: dashed; opacity: 0.85;">
-        <div class="card-thumbnail-wrapper">
-            <img src="starcolor-thumbnail.png" alt="Starcolor Banner" class="card-thumbnail-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 400 200\'><rect width=\'100%\' height=\'100%\' fill=\'%23A2B8FF\'/><text x=\'50%\' y=\'50%\' fill=\'%23D35252\' font-family=\'sans-serif\' font-size=\'24\' font-weight=\'bold\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🎨 STARCOLOR (IN DEV)</text></svg>'">
-        </div>
-        <div class="card-info-wrap">
-            <div class="card-title-row">
-                <span class="card-status-dot" style="background-color: #f1c40f;"></span>
-                <div class="card-main-title">STARCOLOR</div>
-            </div>
-        </div>
-    </a>
+                    <!-- 3. Star Color Lab (ĐÃ MỞ CỬA CHÍNH THỨC) -->
+                    <a href="starcolor/index.html" class="custom-card game-active-card">
+                        <div class="card-thumbnail-wrapper">
+                            <img src="starcolor_thumbnail.png" alt="Star Color Banner" class="card-thumbnail-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%\' height=\'100%\' viewBox=\'0 0 400 200\'><rect width=\'100%\' height=\'100%\' fill=\'%230A0C10\'/><text x=\'50%\' y=\'50%\' fill=\'%233B82F6\' font-family=\'sans-serif\' font-size=\'24\' font-weight=\'bold\' text-anchor=\'middle\' dominant-baseline=\'middle\'>🎨 STAR COLOR LAB</text></svg>'">
+                        </div>
+                        <div class="card-info-wrap">
+                            <div class="card-title-row">
+                                <span class="card-status-dot"></span>
+                                <div class="card-main-title">STAR COLOR LAB</div>
+                            </div>
+                        </div>
+                    </a>
 
-    <!-- 4. Thẻ trống dự án tiếp theo -->
-    <div class="custom-card game-coming-card">
-        <div class="card-main-title">MORE PROJECTS COMING SOON ^^</div>
-    </div>
+                    <!-- 4. Projects Coming Soon -->
+                    <div class="custom-card game-coming-card">
+                        <div class="card-main-title">MORE PROJECTS COMING SOON ^^</div>
+                    </div>
+                </div>
 
-	</div>
+                <!-- BẢNG WIKI NGẮN VỀ SKYETO Ở CUỐI TRANG -->
+                <div class="skyeto-mini-wiki" id="skyeto-wiki" style="background-color: var(--text-dark); color: #ffffff; padding: 20px; border-radius: 8px; margin-top: 30px; box-shadow: 4px 4px 0px rgba(0,0,0,0.15); border: 2px solid var(--text-dark);">
+                    <h3 style="margin-top: 0; font-family: 'Coolvetica-Hv', sans-serif; text-transform: uppercase; border-bottom: 2px solid #333; padding-bottom: 8px; color: var(--star-gold); display: flex; align-items: center; gap: 8px;">
+                        <span>🌟</span> SKYETO MINI WIKI
+                    </h3>
+                    <div style="font-size: 0.88rem; line-height: 1.6; color: #e2e8f0;">
+                        <p style="margin: 6px 0;"><strong>Full Name:</strong> Nguyen Minh Quan (Skyeto)</p>
+                        <p style="margin: 6px 0;"><strong>Quick Info:</strong> Born 26/4/2012
+												born at Long Thanh, Dong Nai , Living in Ho Chi Minh City , Vietnam
+											Straight</p>
+                        <p style="margin: 6px 0;"><strong>info:</strong>Stellan Skyeto is a demonic OC, designed in 2023, with red horns, a gray scarf, and a gold star hair clip</p>
+                        <p style="margin: 6px 0;"><strong>Favorite :</strong>Editor,Programming, Designing,Artist,Content Creator and more mprrr~</p>
+                    </div>
+                </div>
+
+            </main>
 
             <div class="skyeto-mascot-wrapper" style="position: relative; text-align: center; display: flex; flex-direction: column; align-items: center;">
                 <div id="speech-bubble" style="visibility: hidden; background: #ffffff; color: var(--text-dark); border: 3px solid var(--text-dark); border-radius: 8px; padding: 5px 12px; position: absolute; top: -45px; left: 50%; transform: translateX(-50%); font-family: 'Coolvetica-Hv', sans-serif; font-size: 14px; z-index: 10; white-space: nowrap; box-shadow: 3px 3px 0px rgba(0,0,0,0.2);">
@@ -125,7 +162,6 @@
             </div>
 
         </div>
-        
     </div>
 
     <footer>
@@ -135,4 +171,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
