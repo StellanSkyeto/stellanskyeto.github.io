@@ -97,7 +97,7 @@ function setSkyeto(imgName, textCategory) {
 // KIỂM TRA TỪ ĐOÁN
 function checkWord() {
   if (currentTile < 5) {
-    alert("Chưa đủ 5 ký tự!");
+    alert("Not enough 5 character :<");
     return;
   }
 
