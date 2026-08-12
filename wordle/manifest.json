@@ -1,0 +1,8 @@
+{
+  "short_name": "Wordle",
+  "name": "Wordle Offline Mini",
+  "start_url": "./index.html",
+  "background_color": "#f5f5f7",
+  "theme_color": "#34c759",
+  "display": "standalone"
+}

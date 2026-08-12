@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Wordle PWA - Skyeto Edition</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: #f5f5f7; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100vh; padding: 15px 10px; color: #1d1d1f; overflow: hidden; position: relative; }
+    
+    /* Header & Nút Home / Skyeto Hub */
+    header { width: 100%; max-width: 350px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 1.2rem; }
+    .home-icon { width: 28px; height: 28px; object-fit: contain; cursor: pointer; }
+    
+    /* Trợ lý Skyeto vừa hiển thị thoại, vừa là nút Settings trên Header */
+    #skyeto-header-btn { display: flex; align-items: center; gap: 8px; cursor: pointer; background: #ffffff; padding: 4px 10px; border-radius: 20px; border: 1px solid #d2d2d7; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    #skyeto-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+    #skyeto-bubble { font-size: 0.75rem; font-weight: 600; max-width: 130px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #1d1d1f; }
+
+    /* Bảng đoán chữ */
+    #board { display: grid; grid-template-rows: repeat(6, 1fr); gap: 6px; width: 100%; max-width: 320px; aspect-ratio: 5 / 6; margin: auto 0; }
+    .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .tile { border: 2px solid #d2d2d7; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; text-transform: uppercase; background: #ffffff; transition: all 0.2s ease; }
+    
+    /* Màu trạng thái */
+    .correct { background-color: #34c759 !important; color: white; border-color: #34c759 !important; }
+    .present { background-color: #ffcc00 !important; color: white; border-color: #ffcc00 !important; }
+    .absent { background-color: #8e8e93 !important; color: white; border-color: #8e8e93 !important; }
+
+    /* Bàn phím */
+    #keyboard { width: 100%; max-width: 350px; display: flex; flex-direction: column; gap: 6px; }
+    .kbd-row { display: flex; justify-content: center; gap: 4px; }
+    .key { background: #e5e5ea; border: none; border-radius: 6px; font-size: 0.9rem; font-weight: 600; padding: 12px 0; flex: 1; text-align: center; cursor: pointer; user-select: none; }
+    .key-wide { flex: 1.5; font-size: 0.75rem; }
+    .submit-btn { width: 100%; max-width: 350px; background: #34c759; color: white; border: none; padding: 14px; border-radius: 10px; font-weight: bold; font-size: 1rem; cursor: pointer; margin-top: 6px; }
+
+    /* CỬA SỔ POPUP SETTINGS */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 200; justify-content: center; align-items: center; }
+    .modal-content { background: white; padding: 20px; border-radius: 18px; width: 90%; max-width: 340px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .modal-header h3 { font-size: 1.1rem; }
+    
+    /* Các mục Import trực tiếp */
+    .import-container { display: flex; flex-direction: column; gap: 12px; }
+    .import-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .file-btn { background: #007aff; color: white; padding: 10px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; flex: 1; text-align: center; }
+    .info-btn { background: #e5e5ea; color: #007aff; border: none; width: 32px; height: 32px; border-radius: 50%; font-weight: bold; cursor: pointer; flex-shrink: 0; font-size: 0.9rem; }
+
+    .close-btn { width: 100%; background: #e5e5ea; color: #1d1d1f; border: none; padding: 12px; border-radius: 10px; font-weight: 600; margin-top: 15px; cursor: pointer; }
+    
+    /* Popup xem code mẫu */
+    pre { background: #1c1c1e; color: #30d158; padding: 12px; border-radius: 8px; font-size: 0.75rem; overflow-x: auto; max-height: 200px; text-align: left; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <!-- Nút Home ảnh home.png -->
+    <img src="home.png" alt="Home" class="home-icon" onclick="location.reload()">
+    <span>WORDLE</span>
+    
+    <!-- Skyeto Trợ lý VỪA là Nút Settings -->
+    <div id="skyeto-header-btn" onclick="openSettings()">
+      <span id="skyeto-bubble">Hi! >:3</span>
+      <img id="skyeto-avatar" src="skyeto1.png" alt="Skyeto">
+    </div>
+  </header>
+
+  <div id="board"></div>
+
+  <div id="keyboard">
+    <div class="kbd-row" id="row1"></div>
+    <div class="kbd-row" id="row2"></div>
+    <div class="kbd-row" id="row3"></div>
+  </div>
+
+  <button class="submit-btn" onclick="checkWord()">SUBMIT WORD</button>
+
+  <!-- CỬA SỔ SETTINGS KHI BẤM VÀO SKYETO -->
+  <div id="settings-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>⚙️ Skyeto Settings</h3>
+      </div>
+      
+      <div class="import-container">
+        <!-- Import Words.js trực tiếp -->
+        <div class="import-row">
+          <label class="file-btn">
+            📂 Import Words.js
+            <input type="file" id="words-file-input" accept=".js" style="display:none" onchange="importWordsFile(event)">
+          </label>
+          <button class="info-btn" onclick="showGuide('words')">i</button>
+        </div>
+
+        <!-- Import libraryskyeto.txt trực tiếp -->
+        <div class="import-row">
+          <label class="file-btn" style="background-color: #5856d6;">
+            📄 Import libraryskyeto.txt
+            <input type="file" id="txt-file-input" accept=".txt" style="display:none" onchange="importLibraryFile(event)">
+          </label>
+          <button class="info-btn" onclick="showGuide('library')">i</button>
+        </div>
+      </div>
+
+      <button class="close-btn" onclick="closeSettings()">Close</button>
+    </div>
+  </div>
+
+  <!-- POPUP HƯỚNG DẪN CÚ PHÁP (NÚT i) -->
+  <div id="guide-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h3 id="guide-title" style="margin-bottom: 10px;">Syntax Guide</h3>
+      <p id="guide-desc" style="font-size: 0.8rem; color: #6e6e73; margin-bottom: 10px;"></p>
+      <pre><code id="guide-code"></code></pre>
+      <button class="close-btn" onclick="closeGuide()">Got it!</button>
+    </div>
+  </div>
+
+  <script src="words.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
