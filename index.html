@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineColor - AI Color Grading Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>CINE<span>COLOR</span> AI</h1>
+      <p>Cinematic Lighting & Color Grading Analyzer</p>
+    </header>
+
+    <!-- API Key Input -->
+    <div class="api-card">
+      <label for="apiKey">Gemini API Key:</label>
+      <input type="password" id="apiKey" placeholder="Paste ur Gemini API key here..." />
+    </div>
+
+    <!-- Upload Zone -->
+    <div class="upload-zone" id="dropZone">
+      <div class="icon">🎬</div>
+      <p>Drag & drop image here or <label for="fileInput" class="browse-btn">Browse</label></p>
+      <input type="file" id="fileInput" accept="image/*" hidden>
+    </div>
+
+    <!-- Preview & Analyze -->
+    <div class="preview-card hidden" id="previewCard">
+      <img id="imgPreview" src="" alt="Frame Preview">
+      <button id="analyzeBtn" class="btn-analyze">✨ Analyze Color & Lighting</button>
+    </div>
+
+    <!-- AI Output Result -->
+    <div class="result-card hidden" id="resultCard">
+      <h3>🎬 Cinematic Analysis & Grading Guide</h3>
+      <div id="aiOutput" class="markdown-body"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
